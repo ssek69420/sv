@@ -1,9 +1,11 @@
 import express from "express";
-const booksRoutes = express.Router()
-import { addBooks, findBooks, updateBook, deleteBook } from 'controllers/booksController.js'
+const booksRoutes = express.Router();
+import { addBooks, updateBook, deleteBook, findBooks, findBookSingular } from "../controllers/booksController.js";
 
-booksRoutes.get('/', findBooks)
-booksRoutes.post('/', addBooks)
-booksRoutes.get('/',)
+booksRoutes.post('/', addBooks);
+booksRoutes.get('/findAll', findBooks);
+booksRoutes.get('/findSing/:id', findBookSingular);
+booksRoutes.put('/update/:id', updateBook);
+booksRoutes.delete('/delete/:id', deleteBook);
 
-export { booksRoutes }
+export { booksRoutes };

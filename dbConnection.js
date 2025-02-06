@@ -13,7 +13,6 @@ mongoose.connect("mongodb://localhost:27017/crdThing").then(function() {
 }).catch((err) => { console.log("An error occurred: " + err); });
 
 
-
 app.listen(9021, () => {
     console.log(`Server running at http://localhost:9021`);
 });

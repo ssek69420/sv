@@ -37,20 +37,19 @@ const updateBook = async (req, res) => {
 
         if (!book) {
             return res.json({
-                erro: true,
+                err: true,
                 mensagem: "The book wasn't found"
             });
         }
         
-        // Send the updated book as a response
         res.json({
-            erro: false,
+            err: false,
             book
         });
-    } catch (error) {
+    } catch (err) {
         res.json({
-            erro: true,
-            message: error
+            err: true,
+            message: err
         });
     }
 };
@@ -68,15 +67,41 @@ const deleteBook = async (req, res) => {
         }
 
         res.json({
-            erro: false,
+            err: false,
             mensagem: 'The book was successfully deleted.'
         });
     } catch (error) {
         res.json({
-            erro: true,
+            err: true,
             message: error
         });
     }
 };
 
-export { addBooks, findBooks, updateBook, deleteBook };
+
+const findBookSingular = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const book = await exportingBooksModel.findById(id);
+
+        if (!book) {
+            return res.json({
+                err: true,
+                message: "The book wasn't found"
+            });
+        }
+
+        res.json({
+            err: false,
+            book
+        });
+    } catch (err) {
+        res.json({
+            err: true,
+            message: err.message
+        });
+    }
+};
+
+
+export { addBooks, findBooks, updateBook, deleteBook, findBookSingular };
